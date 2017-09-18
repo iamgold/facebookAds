@@ -1,0 +1,19 @@
+{
+    "name": "iamgold/facebook-ads",
+    "description": "Facebook Marketing API Wrapper.",
+    "type": "library",
+    "authors": [
+        {
+            "name": "Eric Huang",
+            "email": "iamgold0105@adgeek.com.tw"
+        }
+    ],
+    "minimum-stability": "dev",
+    "require": {
+        "php": ">=7.0.4",
+        "guzzlehttp/guzzle": "^6.2@dev"
+    },
+    "autoload": {
+        "psr-4": {"iamgold\\facebook\\ads\\": "src/"}
+    }
+}
