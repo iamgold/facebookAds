@@ -2,8 +2,6 @@
 
 namespace iamgold\facebook\ads;
 
-use Exception;
-
 /**
  * This class is used to set common information for facebook api.
  *
@@ -20,17 +18,17 @@ class Api
     /**
      * @var string $app_id
      */
-    public static $app_id;
+    public static $appId;
 
     /**
      * @var string $secret
      */
-    public static $secret;
+    public static $appSecret;
 
     /**
      * @var string $access_token
      */
-    public static $access_token;
+    public static $accessToken;
 
     /**
      * @var string $version
@@ -42,7 +40,7 @@ class Api
      *
      * @parma array $config
      */
-    public static init($config = [])
+    public static init(array $config = [])
     {
         foreach($config as $name=>$value) {
             static::$name = $value;

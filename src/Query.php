@@ -87,6 +87,4 @@ class Query
 
         $this->paths[] = trim($path, '/');
     }
-
-
 }
