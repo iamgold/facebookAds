@@ -19,7 +19,7 @@ interface InterfaceAccountClient
      * @param array $params
      * @return iamgold\facebook\ads\Result
      */
-    public function findCampaigns($accountId = null, arrays $params = []);
+    public function findCampaigns($accountId = null, array $params = []);
 
     /**
      * Find adsets by specific account id
@@ -28,7 +28,7 @@ interface InterfaceAccountClient
      * @param array $params
      * @return iamgold\facebook\ads\Result
      */
-    public function findAdSets($accountId = null, arrays $params = []);
+    public function findAdSets($accountId = null, array $params = []);
 
     /**
      * Find ads by specific account id
@@ -37,14 +37,5 @@ interface InterfaceAccountClient
      * @param array $params
      * @return iamgold\facebook\ads\Result
      */
-    public function findAds($accountId = null, arrays $params = []);
-
-    /**
-     * Create an async report
-     *
-     * @param string $accountId
-     * @param array $params
-     * @return iamgold\facebook\ads\Result
-     */
-    public function createAsyncReport($accountId = null, array $params = []);
+    public function findAds($accountId = null, array $params = []);
 }

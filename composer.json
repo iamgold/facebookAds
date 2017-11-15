@@ -8,10 +8,10 @@
             "email": "iamgold0105@adgeek.com.tw"
         }
     ],
-    "minimum-stability": "dev",
     "require": {
         "php": ">=7.0.4",
-        "guzzlehttp/guzzle": "^6.2@dev"
+        "guzzlehttp/guzzle": "^6.2@dev",
+        "iamgold/phppipeline": "^0.4.1"
     },
     "autoload": {
         "psr-4": {"iamgold\\facebook\\ads\\": "src/"}
