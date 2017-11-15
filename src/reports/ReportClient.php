@@ -4,7 +4,7 @@ namespace iamgold\facebook\ads\reports;
 
 use Exception;
 use iamgold\facebook\ads\AbstractClient;
-use iamgold\facebook\ads\handlers\{AdsAccountHandler, AdsCampaignHandler, AdsAdSetsHandler, AdsAdsHandler, AdsReportHandler, CreateRequestHandler, ParamsHandler};
+use iamgold\facebook\ads\handlers\{AdsAccountHandler, AdsCampaignHandler, AdsAdSetsHandler, AdsAdsHandler, AdsReportHandler, CreatePostRequestHandler};
 use iamgold\phppipeline\HandlerList;
 
 /**
@@ -29,12 +29,11 @@ class ReportClient extends AbstractClient implements InterfceReportClient
 
         $command = (new HandlerList)->addPathHandler(new AdsAccountHandler)
                                     ->addPathHandler(new AdsReportHandler)
-                                    ->add(new ParamsHandler)
                                     ->add(new CreateRequestHandler)
                                     ->resolve();
 
         return $command->exec([
-                'accountId' => $accountId,
+                'id' => $accountId,
                 'params' => &$params,
                 'credential' => $this->getCredential()
             ]);
@@ -54,12 +53,11 @@ class ReportClient extends AbstractClient implements InterfceReportClient
 
         $command = (new HandlerList)->addPathHandler(new AdsCampaignHandler)
                                     ->addPathHandler(new AdsReportHandler)
-                                    ->add(new ParamsHandler)
                                     ->add(new CreateRequestHandler)
                                     ->resolve();
 
         return $command->exec([
-                'campaignId' => $campaignId,
+                'id' => $campaignId,
                 'params' => &$params,
                 'credential' => $this->getCredential()
             ]);
@@ -79,12 +77,11 @@ class ReportClient extends AbstractClient implements InterfceReportClient
 
         $command = (new HandlerList)->addPathHandler(new AdsAdSetsHandler)
                                     ->addPathHandler(new AdsReportHandler)
-                                    ->add(new ParamsHandler)
                                     ->add(new CreateRequestHandler)
                                     ->resolve();
 
         return $command->exec([
-                'adsId' => $adsId,
+                'id' => $adsId,
                 'params' => &$params,
                 'credential' => $this->getCredential()
             ]);
@@ -104,12 +101,11 @@ class ReportClient extends AbstractClient implements InterfceReportClient
 
         $command = (new HandlerList)->addPathHandler(new AdsAdsHandler)
                                     ->addPathHandler(new AdsReportHandler)
-                                    ->add(new ParamsHandler)
                                     ->add(new CreateRequestHandler)
                                     ->resolve();
 
         return $command->exec([
-                'adsId' => $adsId,
+                'id' => $adsId,
                 'params' => &$params,
                 'credential' => $this->getCredential()
             ]);
@@ -131,6 +127,49 @@ class ReportClient extends AbstractClient implements InterfceReportClient
 
         return $command->exec([
                 'reportId' => $reportId,
+                'credential' => $this->getCredential()
+            ]);
+    }
+
+    /**
+     * Create report
+     *
+     * @param string $level
+     * @param string $id
+     * @param array $params
+     */
+    private function create($level, $id, array $params = [])
+    {
+        if (empty($id))
+            throw new Exception("Undefined \$$level id", 404);
+
+        switch($level) {
+            case 'account':
+                $handler = new AdsAccountHandler;
+                break;
+            case 'campaign':
+                $handler = new AdsCampaignHandler;
+                break;
+            case 'adsets':
+                $handler = new AdsAdSetsHandler;
+                break;
+            case 'ads':
+                $handler = new AdsAdsHandler;
+                break;
+            default:
+                throw new Exception("Invalid ", 400);
+                break;
+
+        }
+
+        $command = (new HandlerList)->add($handler)
+                                    ->add(new AdsReportHandler)
+                                    ->add(new CreateRequestHandler)
+                                    ->resolve();
+
+        return $command->exec([
+                'id' => $adsId,
+                'params' => &$params,
                 'credential' => $this->getCredential()
             ]);
     }

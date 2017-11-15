@@ -25,13 +25,13 @@ class AdsAccountHandler implements HandlerInterface
     public function handle($payload)
     {
         try {
-            $accountId = ($payload['accountId']) ?: null;
+            $accountId = ($payload['id']) ?: null;
 
             if ($accountId === null)
-                throw new Exception("Undefied accountId in \$payload", 404);
+                throw new Exception("Undefied account id in \$payload", 404);
 
             if (empty($accountId))
-                throw new Exception("Invalid accountId in \$payload", 400);
+                throw new Exception("Invalid account id in \$payload", 400);
 
             $accountId = 'act_' . $accountId;
 

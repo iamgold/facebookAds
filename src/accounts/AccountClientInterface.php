@@ -2,7 +2,7 @@
 
 namespace iamgold\facebook\ads\accounts;
 
-interface InterfaceAccountClient
+interface AccountClientInterface
 {
     /**
      * Find by specific account
@@ -10,7 +10,7 @@ interface InterfaceAccountClient
      * @param string $accountId
      * @return iamgold\facebook\ads\Result
      */
-    public function find($accountId = null);
+    public function findOne($accountId = null);
 
     /**
      * Find campaigns by specific account id

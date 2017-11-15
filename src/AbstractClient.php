@@ -4,6 +4,7 @@ namespace iamgold\facebook\ads;
 
 use Exception;
 use iamgold\facebook\ads\credentials\Credential;
+use iamgold\phppipeline\HandlerList;
 
 /**
  * This is an abstract class, all client class must extending this class.
@@ -47,5 +48,16 @@ abstract Class AbstractClient
     public function getCredential()
     {
         return $this->credential;
+    }
+
+    /**
+     * Create handler list when finding
+     *
+     * @return iamgold\facebook\ads\HandlerList
+     */
+    public function find()
+    {
+        $className = static::BASE_SERVICE_HANDLER;
+        return (new HandlerList)->add(new $className);
     }
 }

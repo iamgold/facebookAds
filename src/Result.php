@@ -12,7 +12,7 @@ use iamgold\phppipeline\HandlerList;
  * @author Eric Huang <iamgold0105@gmail.com>
  * @version 1.0.0
  */
-class Result implements InterfaceResult
+class Result implements ResultInterface
 {
     /**
      * @var string INDEX_NEXT

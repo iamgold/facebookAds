@@ -20,4 +20,3 @@ while($result->hasNext()) {
     $result = $result->getNext();
     echo "\nNext\n";
 }
-
