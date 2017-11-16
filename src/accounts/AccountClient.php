@@ -24,9 +24,10 @@ class AccountClient extends AbstractClient implements AccountClientInterface
      * Find by specific account
      *
      * @param string $accountId
+     * @param array $params
      * @return iamgold\facebook\ads\Result
      */
-    public function findOne($accountId = null)
+    public function findOne($accountId = null, array $params = [])
     {
         if (empty($accountId))
             throw new Exception("Undefined \$accountId", 404);

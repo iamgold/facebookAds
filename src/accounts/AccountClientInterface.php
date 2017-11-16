@@ -8,9 +8,10 @@ interface AccountClientInterface
      * Find by specific account
      *
      * @param string $accountId
+     * @param array $params
      * @return iamgold\facebook\ads\Result
      */
-    public function findOne($accountId = null);
+    public function findOne($accountId = null, array $params = []);
 
     /**
      * Find campaigns by specific account id
