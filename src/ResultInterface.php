@@ -38,4 +38,11 @@ interface ResultInterface
      * @return iamgold\facebook\ads\Result
      */
     public function getPrevious();
+
+    /**
+     * Get attributes
+     *
+     * @return array
+     */
+    public function getAttributes();
 }

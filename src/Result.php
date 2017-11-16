@@ -12,7 +12,7 @@ use iamgold\phppipeline\HandlerList;
  * @author Eric Huang <iamgold0105@gmail.com>
  * @version 1.0.0
  */
-class Result implements ResultInterface
+class Result implements ResultInterface, ArrayAccess
 {
     /**
      * @var string INDEX_NEXT
@@ -103,6 +103,58 @@ class Result implements ResultInterface
         return new self($body);
     }
 
+    /**
+     * Get attributes
+     *
+     * @return array
+     */
+    public function getAttributes()
+    {
+        return $this->attributes;
+    }
+
+    /**
+     * Implement offset set of arrayaccess
+     *
+     * @param string $offset
+     * @param mixed $value
+     */
+    public function offsetSet($offset, $value) {
+        if (is_null($offset)) {
+            $this->attributes[] = $value;
+        } else {
+            $this->attributes[$offset] = $value;
+        }
+    }
+
+    /**
+     * Implement offset exists
+     *
+     * @param string $offset
+     * @return bool
+     */
+    public function offsetExists($offset) {
+        return isset($this->attributes[$offset]);
+    }
+
+    /**
+     * Implement offset unset
+     *
+     * @param string $offset
+     */
+    public function offsetUnset($offset) {
+        unset($this->attributes[$offset]);
+    }
+
+    /**
+     * Implement offset get
+     *
+     * @param string $offset
+     * @return mixed
+     */
+    public function offsetGet($offset) {
+        return isset($this->attributes[$offset]) ? $this->attributes[$offset] : null;
+    }
 
     /**
      * Implement __get

@@ -37,6 +37,7 @@ class AccountClient extends AbstractClient implements AccountClientInterface
 
         return $command->exec([
                 'id' =>  $accountId,
+                'params' => &$params,
                 'credential' => $this->getCredential()
             ]);
     }
